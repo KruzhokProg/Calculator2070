@@ -13,8 +13,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -69,7 +75,7 @@ fun Screen() {
         ) {
             CircleButton(text = "7")
             CircleButton(text = "8")
-            CircleButton(text = "9")
+            CircleButton(icon = Icons.Default.KeyboardArrowLeft)
         }
     }
 }
@@ -77,7 +83,8 @@ fun Screen() {
 @Composable
 fun CircleButton(
     modifier: Modifier = Modifier,
-    text: String
+    text: String? = null,
+    icon: ImageVector? = null
 ) {
     Box(
 //        modifier = modifier.width(200.dp).height(200.dp).background(color = Color.Red)
@@ -87,11 +94,21 @@ fun CircleButton(
             .height(100.dp)
             .background(YandexColor)
     ) {
-        Text(
-            text = text,
-            fontSize = 40.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.align(Alignment.Center)
-        )
+        if (text != null) {
+            Text(
+                text = text,
+                fontSize = 40.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+                modifier = Modifier.align(Alignment.Center)
+            )
+        }
+        if (icon != null) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp).align(Alignment.Center)
+            )
+        }
     }
 }
